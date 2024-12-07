@@ -34,4 +34,4 @@ build/
 
 
 ## env vars
-src/main/rescources/application.properties
+!**/src/main/rescources/application.properties
