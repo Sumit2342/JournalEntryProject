@@ -1,5 +1,8 @@
 package com.engineeringDigest.journalApp.controller;
 
+import java.util.Optional;
+
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,29 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.engineeringDigest.journalApp.entity.JournalEntry;
+import com.engineeringDigest.journalApp.entity.User;
 import com.engineeringDigest.journalApp.services.JournalEntryService;
+import com.engineeringDigest.journalApp.services.UserService;
 
 @RestController
 @RequestMapping("/public")
 public class PublicController {
 
     @Autowired
-    private JournalEntryService journalEntryService;
+    private UserService userService;
 
     @GetMapping("/health-check")
     public String healthCheck() {
         return "Situation normal all Fired up!";
     }
 
-    @PostMapping("/{userName}")
-    public ResponseEntity<JournalEntry> createUserJournalEntry(@RequestBody JournalEntry myEntry,
-            @PathVariable String userName) {
+    @PostMapping("/create-user")
+    public ResponseEntity<User> createUser(@RequestBody User newUser) {
         try {
-            journalEntryService.saveEntry(myEntry, userName);
+            userService.saveNewEntry(newUser);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-
     }
 }

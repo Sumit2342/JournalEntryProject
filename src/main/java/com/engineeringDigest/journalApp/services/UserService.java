@@ -26,7 +26,7 @@ public class UserService {
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public void saveUser(User user) {
+    public void saveNewEntry(User user) {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setRoles(Arrays.asList("USER"));
@@ -36,13 +36,8 @@ public class UserService {
         }
     }
 
-    public void saveNewUser(User user) {
-        try {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            userRepository.save(user);
-        } catch (Exception e) {
-            // TODO: handle exception
-        }
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
     public List<User> getAllUsers() {
@@ -53,8 +48,8 @@ public class UserService {
         return userRepository.findById(id);
     }
 
-    public void deleteById(ObjectId id) {
-        userRepository.deleteById(id);
+    public void deleteById(String userName) {
+        userRepository.deleteByUserName(userName);
     }
 
     public User findByUserName(String userName) {
