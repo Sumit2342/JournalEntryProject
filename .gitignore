@@ -1,12 +1,12 @@
 HELP.md
-!target/
+target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 
 env.properties
-src\main\resources\application.yml
+application.yml
 application-dev.yml
 application-prod.yml
 ### STS ###
