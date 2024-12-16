@@ -17,8 +17,8 @@ import com.engineeringDigest.journalApp.services.UserDetailsServiceImpl;
 
 @EnableWebSecurity
 @Configuration
-@Profile("dev")
-public class SpringSecurity {
+@Profile("prod")
+public class SpringSecurityProd {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 

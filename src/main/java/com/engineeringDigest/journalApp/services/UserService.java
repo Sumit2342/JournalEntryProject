@@ -26,13 +26,15 @@ public class UserService {
 
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-    public void saveNewEntry(User user) {
+    public boolean saveNewEntry(User user) {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setRoles(Arrays.asList("USER"));
             userRepository.save(user);
+            return true;
         } catch (Exception e) {
             log.error("Exception", e);
+            return false;
         }
     }
 

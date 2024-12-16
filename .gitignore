@@ -6,7 +6,9 @@ target/
 
 
 env.properties
-application.properties
+application.yml
+application-dev.yml
+application-prod.yml
 ### STS ###
 .apt_generated
 .classpath
